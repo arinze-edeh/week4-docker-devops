@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: week4-frontend
+    ports:
+      - "8080:80"
+    networks:
+      - app-network
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    container_name: week4-backend
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+    depends_on:
+      - database
+    environment:
+      - DB_HOST=database
+      - DB_PORT=5432
+      - DB_USER=appuser
+      - DB_PASSWORD=apppassword
+      - DB_NAME=appdb
+
+  database:
+    image: postgres:16-alpine
+    container_name: week4-database
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+    environment:
+      - POSTGRES_USER=appuser
+      - POSTGRES_PASSWORD=apppassword
+      - POSTGRES_DB=appdb
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-data:

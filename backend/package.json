@@ -1,0 +1,9 @@
+{
+  "name": "docker-week4-app",
+  "version": "1.0.0",
+  "description": "Simple Node.js app for Week 4 Docker task",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  }
+}
