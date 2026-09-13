@@ -20,7 +20,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh 'echo "Simulating test step"'
+                sh 'exit 1'
             }
         }
     }
