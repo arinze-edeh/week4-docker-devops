@@ -24,6 +24,17 @@ pipeline {
             }
         }
     }
+        stage('Validation') {
+            steps {
+                echo 'Running validation checks...'
+                sh '''
+                    echo "Checking for required files"
+                    test -f Jenkinsfile && echo "Jenkinsfile found"
+                    test -f docker-compose.yml && echo "docker-compose.yml found"
+                '''
+            }
+        }
+    }
 
     post {
         success {
