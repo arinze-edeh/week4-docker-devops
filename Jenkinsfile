@@ -1,4 +1,3 @@
-// Testing webhook trigger again
 pipeline {
     agent any
 
@@ -23,7 +22,7 @@ pipeline {
                 sh 'echo "Simulating test step"'
             }
         }
-    }
+
         stage('Validation') {
             steps {
                 echo 'Running validation checks...'
